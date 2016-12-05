@@ -20,7 +20,7 @@
   },
   "scripts": {
     "build": "webpack",
-    "dev": "webpack-dev-server --progress --colors --hot"
+    "dev": "webpack-dev-server --devtool eval --progress --colors --hot"
   },
   "author": "wang_hes",
   "license": "ISC"

@@ -1,10 +1,11 @@
 var path = require('path');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
     entry: [
         path.resolve(__dirname, "js/entry.js")
     ],
     output: {
-        path: path.resolve(__dirname, './js/'),
+        path: path.resolve(__dirname, './build/js'),
         filename: "bundle.js"
     },
     module: {
@@ -17,14 +18,24 @@ module.exports = {
         }]
     },
     resolve: {
-        extensions: ['', '.js', '.jsx','.css']
+        extensions: ['', '.js', '.jsx', '.css']
     },
     devtool: 'eval-source-map',
     devServer: {
-      inline: true,
-      hot:true,
-      color:true,
-      progress:true,
-      historyApiFallback:true
-   }
+        inline: true,
+        hot: true,
+        color: true,
+        progress: true,
+        historyApiFallback: true
+    },
+    plugins: [
+        new HtmlWebpackPlugin({
+          template:path.resolve('template','index.tpl.html'),
+          inject: 'body',//允许插件修改的内容为body,
+          minify:{    //压缩HTML文件
+                removeComments:true,    //移除HTML中的注释
+                collapseWhitespace:true    //删除空白符与换行符
+           }
+        })
+    ]
 };
